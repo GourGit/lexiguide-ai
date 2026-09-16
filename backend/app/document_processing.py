@@ -57,6 +57,9 @@ def _guess_section_label(paragraph: str, fallback_index: int) -> str:
     return f"Section {fallback_index}"
 
 
+from functools import lru_cache
+
+@lru_cache(maxsize=128)
 def chunk_text(text: str, target_chars: int = 900, overlap: int = 120):
     """
     Split text into clause-sized chunks, splitting on paragraph/heading

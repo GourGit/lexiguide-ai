@@ -23,6 +23,10 @@ def create_app(config_class=Config):
     # Strict CORS settings
     CORS(app, resources={r"/api/*": {"origins": app.config["CORS_ORIGIN"]}})
 
+    # Compress responses for efficiency
+    from flask_compress import Compress
+    Compress(app)
+
     from app.routes import documents, chat, compare, lawyer_prep, checklist, health, extras
     app.register_blueprint(documents.bp)
     app.register_blueprint(chat.bp)

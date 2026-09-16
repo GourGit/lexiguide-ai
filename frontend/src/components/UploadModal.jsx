@@ -46,11 +46,15 @@ export default function UploadModal({ open, onClose }) {
         {stageIndex === -1 && (
           <>
             <div
+              role="button"
+              tabIndex="0"
+              aria-label="Upload document drag and drop area"
+              onKeyDown={(e) => e.key === 'Enter' && inputRef.current?.click()}
               onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
               onDragLeave={() => setDragOver(false)}
               onDrop={(e) => { e.preventDefault(); setDragOver(false); handleFile(e.dataTransfer.files[0]); }}
               onClick={() => inputRef.current?.click()}
-              className={`border-2 border-dashed rounded-lg py-12 text-center cursor-pointer transition-colors ${
+              className={`border-2 border-dashed rounded-lg py-12 text-center cursor-pointer transition-colors focus:outline-none focus:ring-2 focus:ring-accent ${
                 dragOver ? "border-accent bg-accent-soft" : "border-line hover:border-accent"
               }`}
             >
@@ -61,6 +65,7 @@ export default function UploadModal({ open, onClose }) {
                 type="file"
                 accept=".pdf,.docx,.txt"
                 className="hidden"
+                aria-hidden="true"
                 onChange={(e) => handleFile(e.target.files[0])}
               />
             </div>
@@ -69,7 +74,7 @@ export default function UploadModal({ open, onClose }) {
         )}
 
         {stageIndex >= 0 && (
-          <ul className="space-y-3 py-4">
+          <ul className="space-y-3 py-4" aria-live="polite" aria-atomic="true">
             {STAGES.map((s, i) => (
               <li key={s} className="flex items-center gap-3 text-sm">
                 <span

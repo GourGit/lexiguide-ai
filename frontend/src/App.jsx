@@ -19,14 +19,16 @@ const PageLoader = () => (
 export default function App() {
   return (
     <Suspense fallback={<PageLoader />}>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/documents/:id" element={<DocumentAnalysis />} />
-        <Route path="/compare" element={<Compare />} />
-        <Route path="/legal-info" element={<LegalInfo />} />
-        <Route path="*" element={<Landing />} />
-      </Routes>
+      <main className="min-h-screen">
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/documents/:id" element={<DocumentAnalysis />} />
+          <Route path="/compare" element={<Compare />} />
+          <Route path="/legal-info" element={<LegalInfo />} />
+          <Route path="*" element={<Landing />} />
+        </Routes>
+      </main>
     </Suspense>
   );
 }

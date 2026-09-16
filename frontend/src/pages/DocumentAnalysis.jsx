@@ -103,8 +103,15 @@ export default function DocumentAnalysis() {
     window.print();
   }
 
-  if (loading) return <Shell><div aria-live="polite" aria-busy="true"><p className="text-sm text-ink-soft">Loading document…</p></div></Shell>;
-  if (error) return <Shell><p className="text-sm text-high">{error}</p></Shell>;
+  if (loading) return (
+    <Shell>
+      <div aria-live="assertive" aria-atomic="true" role="status" className="flex items-center gap-3">
+        <div className="w-4 h-4 rounded-full border-2 border-accent border-t-transparent animate-spin" aria-hidden="true"></div>
+        <p className="text-sm text-ink-soft">AI is analyzing your document. This may take a few moments...</p>
+      </div>
+    </Shell>
+  );
+  if (error) return <Shell><p className="text-sm text-high" role="alert">{error}</p></Shell>;
 
   // USP 6: compute highlighted lines based on searchQuery OR highlightText
   const activeQuery = searchQuery.trim().toLowerCase();
