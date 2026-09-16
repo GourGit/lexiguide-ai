@@ -13,7 +13,7 @@ describe('Navbar Component', () => {
     );
     
     // Check if the logo/home link is rendered
-    expect(screen.getByText(/LexiGuide AI/i)).toBeInTheDocument();
+    expect(screen.getByText(/LexiGuide/i)).toBeInTheDocument();
     
     // Check if other links are rendered
     expect(screen.getByText(/Compare/i)).toBeInTheDocument();

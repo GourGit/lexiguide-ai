@@ -8,7 +8,7 @@ describe('RiskCard Component', () => {
     const mockRisk = {
       level: "High",
       explanation: "This clause severely limits your ability to sue.",
-      lawyer_question: "Should we negotiate a cap on this liability limit?"
+      suggested_question: "Should we negotiate a cap on this liability limit?"
     };
 
     render(<RiskCard risk={mockRisk} index={1} />);
